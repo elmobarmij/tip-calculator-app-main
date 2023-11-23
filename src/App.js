@@ -130,6 +130,11 @@ function Bill({
 }
 
 function Result({ tipAmount, totalAmount, numPeople, onReset }) {
+  let USDollar = new Intl.NumberFormat("en-US", {
+    style: "currency",
+    currency: "USD",
+  });
+
   return (
     <div className="result">
       <div className="separator tip-result">
@@ -139,15 +144,7 @@ function Result({ tipAmount, totalAmount, numPeople, onReset }) {
         </div>
         <input
           type="text"
-          value={
-            numPeople > 0
-              ? `${
-                  Number.isInteger(tipAmount)
-                    ? `$${tipAmount}.00`
-                    : `$${tipAmount}`
-                }`
-              : "$0.00"
-          }
+          value={numPeople > 0 ? `${USDollar.format(tipAmount)}` : "$0.00"}
           readOnly
         />
       </div>
@@ -159,15 +156,7 @@ function Result({ tipAmount, totalAmount, numPeople, onReset }) {
         </div>
         <input
           type="text"
-          value={
-            numPeople > 0
-              ? `${
-                  Number.isInteger(totalAmount)
-                    ? `$${totalAmount}.00`
-                    : `$${totalAmount}`
-                }`
-              : "$0.00"
-          }
+          value={numPeople > 0 ? `${USDollar.format(totalAmount)}` : "$0.00"}
           readOnly
         />
       </div>
