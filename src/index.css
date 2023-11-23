@@ -1,0 +1,223 @@
+:root {
+  --Strong-cyan: hsl(172, 67%, 45%);
+  --very-dark-cyan: hsl(183, 100%, 15%);
+  --dark-grayish-cyan: hsl(186, 14%, 43%);
+  --grayish-cyan: hsl(184, 14%, 56%);
+  --light-grayish-cyan: hsl(185, 41%, 84%);
+  --very-light-grayish-cyan: hsl(189, 41%, 97%);
+  --white: hsl(0, 0%, 100%);
+}
+
+/* - Font size (form inputs): 24px */
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+html {
+  box-sizing: border-box;
+  font-size: 62.5%;
+}
+
+body {
+  font-size: 62.5%;
+  font-family: "Space Mono", monospace;
+  background-color: var(--light-grayish-cyan);
+}
+.separator {
+  margin-bottom: 2rem;
+}
+.container {
+  width: 70rem;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.card {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  background-color: var(--white);
+  padding: 3rem;
+  gap: 3rem;
+  border-radius: 1.5rem;
+  overflow: hidden;
+}
+label {
+  margin-bottom: 1rem;
+  font-size: 1.6rem;
+  color: var(--dark-grayish-cyan);
+}
+input {
+  width: 100%;
+  padding: 1rem;
+  font-size: 1.6rem;
+  border: none;
+  font-family: inherit;
+  border-radius: 0.6rem;
+  caret-color: var(--Strong-cyan);
+}
+.logo {
+  text-align: center;
+  margin-bottom: 7rem;
+}
+.logo img {
+  max-width: 100%;
+}
+.result {
+  padding: 3rem;
+  border-radius: 1.2rem;
+  background-color: var(--very-dark-cyan);
+}
+.result label {
+  color: var(--white);
+}
+.inputs {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+}
+.inputs input {
+  background-color: var(--very-dark-cyan);
+  color: var(--white);
+  font-weight: 500;
+  text-align: center;
+  cursor: pointer;
+  transition: 0.3s all;
+}
+.inputs input:hover {
+  background-color: var(--Strong-cyan);
+}
+.inputs input:focus,
+.inputs input:active {
+  color: #000;
+  outline: none;
+  background-color: var(--Strong-cyan);
+}
+.inputs input.special {
+  color: var(--dark-grayish-cyan);
+  background-color: var(--light-grayish-cyan);
+  font-weight: bold;
+}
+.inputs input.special:active,
+.inputs input.special:focus {
+  color: #000;
+  background-color: var(--white);
+  outline: 2px solid var(--Strong-cyan);
+}
+.bill-info,
+.tip-info,
+.people-info {
+  display: flex;
+  flex-direction: column;
+}
+.bill-info input,
+.people-info input {
+  color: var(--grayish-cyan);
+  text-align: right;
+  background-size: 1.2rem;
+}
+.bill-info input:active,
+.bill-info input:focus,
+.people-info input:active,
+.people-info input:focus {
+  outline: 2px solid var(--Strong-cyan);
+}
+.bill-info input {
+  background: var(--very-light-grayish-cyan) url("images/icon-dollar.svg")
+    no-repeat 5% 50%;
+}
+.people-info input {
+  background: var(--very-light-grayish-cyan) url("images/icon-person.svg")
+    no-repeat 5% 50%;
+}
+.tip-result,
+.total-result,
+.number {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.number {
+  font-size: 1.4rem;
+  margin-bottom: 1rem;
+}
+.number label {
+  font-size: inherit;
+  margin-bottom: 0;
+}
+.number .message {
+  color: #ff0000d9;
+}
+.tip-result input:focus,
+.total-result input:focus {
+  outline: none;
+  border: none;
+}
+.result {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.result .parent {
+  display: flex;
+  flex-direction: column;
+  flex-basis: 70%;
+}
+.parent label {
+  font-size: 1.4rem;
+}
+.parent span {
+  font-size: 1.2rem;
+  color: var(--grayish-cyan);
+}
+.result input {
+  text-align: right;
+  font-size: 3.5rem;
+  color: var(--Strong-cyan);
+  background-color: transparent;
+}
+.result button {
+  border: none;
+  color: var(--very-dark-cyan);
+  background-color: hsl(184deg 14% 56% / 29%);
+  padding: 1rem;
+  border-radius: 0.4rem;
+  text-transform: uppercase;
+  font-weight: 600;
+  width: 100%;
+  cursor: pointer;
+  transition: 0.3s all;
+  font-family: inherit;
+}
+.result button:hover,
+.result button:active {
+  background-color: hsl(172deg 67% 45% / 92%);
+}
+@media only screen and (max-width: 767px) {
+  .container {
+    width: 100%;
+    position: relative;
+    top: 0;
+    left: 0;
+    transform: none;
+  }
+  .logo {
+    padding-top: 5rem;
+    margin-bottom: 5rem;
+  }
+  .card {
+    display: flex;
+    flex-direction: column;
+  }
+  .result input {
+    font-size: 3rem;
+  }
+}
