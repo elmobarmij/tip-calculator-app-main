@@ -6,11 +6,13 @@ export default function App() {
   const [bill, setBill] = useState(0);
   const [percentage, setPercentage] = useState("");
   const [numPeople, setNumPeople] = useState(0);
+  const [custom, setCustom] = useState("");
 
   let tipAmount = percentage / numPeople;
   let totalAmount = (bill + percentage) / numPeople;
 
   function handleClick(e) {
+    setCustom("");
     setPercentage(Number(e.target.value.slice(1)));
   }
 
@@ -18,6 +20,7 @@ export default function App() {
     setBill(0);
     setPercentage("");
     setNumPeople(0);
+    setCustom("");
   }
 
   return (
@@ -33,8 +36,10 @@ export default function App() {
           setNumPeople={setNumPeople}
           percentage={percentage}
           setPercentage={setPercentage}
-          onSelectPercentage={handleClick}
+          onSelection={handleClick}
           onReset={handleReset}
+          custom={custom}
+          setCustom={setCustom}
         />
         <Result
           bill={bill}
@@ -53,9 +58,11 @@ function Bill({
   setBill,
   numPeople,
   setNumPeople,
-  onSelectPercentage,
+  onSelection,
   percentage,
   setPercentage,
+  custom,
+  setCustom,
 }) {
   return (
     <div className="bill">
@@ -70,36 +77,18 @@ function Bill({
       <div className="tip-info separator">
         <label>Select Tip %</label>
         <div className="inputs" value={percentage}>
-          <input type="text" value="$5" readOnly onClick={onSelectPercentage} />
-          <input
-            type="text"
-            value="$10"
-            readOnly
-            onClick={onSelectPercentage}
-          />
-          <input
-            type="text"
-            value="$15"
-            readOnly
-            onClick={onSelectPercentage}
-          />
-          <input
-            type="text"
-            value="$25"
-            readOnly
-            onClick={onSelectPercentage}
-          />
-          <input
-            type="text"
-            value="$50"
-            readOnly
-            onClick={onSelectPercentage}
-          />
+          <Input value="$5" onSelection={onSelection} />
+          <Input value="$10" onSelection={onSelection} />
+          <Input value="$15" onSelection={onSelection} />
+          <Input value="$25" onSelection={onSelection} />
+          <Input value="$50" onSelection={onSelection} />
           <input
             className="special"
             type="text"
+            value={custom}
             placeholder="Custom"
             onChange={(e) => {
+              setCustom(Number(e.target.value));
               setPercentage(Number(e.target.value));
             }}
           />
@@ -127,6 +116,10 @@ function Bill({
       </div>
     </div>
   );
+}
+
+function Input({ value, onSelection }) {
+  return <input type="text" value={value} readOnly onClick={onSelection} />;
 }
 
 function Result({ tipAmount, totalAmount, numPeople, onReset }) {
